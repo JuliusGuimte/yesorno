@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayot Ka?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 50px;
+        }
+        .question {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #no {
+            position: absolute;
+        }
+        #gif {
+            display: none;
+            margin-top: 20px;
+        }
+        #gif img {
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="question">Bayot ka?</div>
+    <button id="yes">Yes</button>
+    <button id="no">No</button>
+    <div id="gif">
+        <img src="https://media.giphy.com/media/3o7TKz9bX9v9Kz9b9K/giphy.gif" alt="Funny meme GIF">
+    </div>
+
+    <script>
+        const noButton = document.getElementById('no');
+        const yesButton = document.getElementById('yes');
+        const gifDiv = document.getElementById('gif');
+
+        // Function to move the "No" button away from the mouse
+        document.addEventListener('mousemove', (e) => {
+            const rect = noButton.getBoundingClientRect();
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            // If mouse is near the button, move it randomly
+            if (mouseX > rect.left - 50 && mouseX < rect.right + 50 &&
+                mouseY > rect.top - 50 && mouseY < rect.bottom + 50) {
+                const newX = Math.random() * (window.innerWidth - 100);
+                const newY = Math.random() * (window.innerHeight - 100);
+                noButton.style.left = newX + 'px';
+                noButton.style.top = newY + 'px';
+            }
+        });
+
+        // When "Yes" is clicked, show the GIF
+        yesButton.addEventListener('click', () => {
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+            gifDiv.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
